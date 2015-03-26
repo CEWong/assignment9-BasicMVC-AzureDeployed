@@ -4,71 +4,40 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="row">
+    <div class="col col-md-10">
+        <h2 class="pull-left">Profile</h2>
+        <h4 class="pull-right">@Html.ActionLink("Edit Profile", "Edit", new { id = Model.ProfileID })</h4>
+    </div>
+</div>
 
-<div>
-    <h4>Profile</h4>
+<div class="row">
+    <div class="col-md-4">
+        <img src="@Model.Picture" class="img-responsive" />
+        <ul>
+            <li>Favorite Hot Dog: @Html.DisplayFor(model => model.FavoriteDog)</li>
+            <li>Rating: @Html.DisplayFor(model => model.Rating)</li>
+        </ul>
+    </div>
+    <div class="=col-md-8">
+        <h3>@Html.DisplayFor(model => model.Name)</h3>
+        <hr />
+        <div class="ProfileBio">
+            <p>@Html.DisplayFor(model => model.Bio)</p>
+        </div>
+        <div class="PreviousDogs">
+            <h4>The Last Hot Dogs I Ate</h4>
+            <ul>
+                @foreach (var dog in (Model.PastDogs))
+                {
+                    <li>@Html.DisplayFor(model => dog) </li>
+                }
+            </ul>
+        </div>
+    </div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Bio)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Bio)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FavoriteDog)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FavoriteDog)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastAteLocation)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastAteLocation)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastAteDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastAteDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Picture)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Picture)
-        </dd>
-
-    </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProfileID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

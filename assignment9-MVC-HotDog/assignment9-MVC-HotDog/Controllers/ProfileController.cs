@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using assignment9_MVC_HotDog.Models;
+using System.Net;
 
 namespace assignment9_MVC_HotDog.Controllers
 {
@@ -20,7 +21,13 @@ namespace assignment9_MVC_HotDog.Controllers
         // GET: Profile/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            ProfileService service = new ProfileService();
+            Profile aProfile = service.getProfile(id);
+            if (aProfile.ProfileID == 0)
+            {
+                return new HttpNotFoundResult("There's no profile, duh.");
+            }
+            return View(aProfile);
         }
 
         //// GET: Profile/Create
@@ -48,7 +55,9 @@ namespace assignment9_MVC_HotDog.Controllers
         // GET: Profile/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ProfileService service = new ProfileService();
+            Profile aProfile = service.getProfile(id);
+            return View(aProfile);
         }
 
         // POST: Profile/Edit/5
